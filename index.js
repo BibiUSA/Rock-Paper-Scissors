@@ -12,17 +12,13 @@ const youWin = document.querySelector("#you-win");
 const youLose = document.querySelector("#you-lose");
 
 
-console.log(aiSigns);
 
 let chosenSign; //sign that you chose
 
 yourScore.innerHTML =0; //scoreboard number
 aiScore.innerHTML= 0; // ai scoreboard number
 
-
-
 let chosenButton =0;
-
 
 
 for (let i=0; i<3; i++){
@@ -47,65 +43,43 @@ for (let i=0; i<3; i++){
             },2000);
             setTimeout(function(){
                 let aiChoice = aiPlay();
-                console.log(aiPlay() +"HELLO CAN YOU See this");
-                console.log(aiChoice +"IS THIS REPEATING?");  
             if(chosenSign === aiChoice){
-                console.log("we have a draw");
-                aiSigns[i].classList.add("chosen");
-                keepPlaying.classList.remove("hidden");  
-                winner();         
+                battle(i, chosenSign,aiChoice);        
             } else if(chosenSign === "paper1" && aiChoice=== "rock1"){
-                aiSigns[1].classList.add("chosen");
-                console.log("You win AI rock");
-                yourScore.innerHTML =parseInt(yourScore.innerHTML)+1;
-                keepPlaying.classList.remove("hidden");
+                battle(1, chosenSign,aiChoice,yourScore);
                 winner();
+                
             }else if (chosenSign === "paper1" && aiChoice === "scissors1"){
-                aiSigns[2].classList.add("chosen");
-                console.log("AI win AI scissors");
-                aiScore.innerHTML =parseInt(aiScore.innerHTML)+1;
-                keepPlaying.classList.remove("hidden");
+                battle(2, chosenSign,aiChoice,aiScore);
                 winner();
+                
             }else if(chosenSign === "rock1" && aiChoice === "paper1"){
-                aiSigns[0].classList.add("chosen");
-                console.log("AI wins AI paper");
-                aiScore.innerHTML =parseInt(aiScore.innerHTML)+1;
-                keepPlaying.classList.remove("hidden");
+                battle(0, chosenSign,aiChoice,aiScore);
                 winner();
+                
             }else if(chosenSign === "rock1" && aiChoice === "scissors1"){
-                aiSigns[2].classList.add("chosen");
-                console.log("You win AI scissors");
-                yourScore.innerHTML =parseInt(yourScore.innerHTML)+1;
-                keepPlaying.classList.remove("hidden");
+                battle(2, chosenSign,aiChoice, yourScore)
                 winner();
+                
             }else if(chosenSign === "scissors1" && aiChoice === "paper1"){
-                aiSigns[0].classList.add("chosen");
-                console.log("You win AI paper");
-                yourScore.innerHTML =parseInt(yourScore.innerHTML)+1;
-                keepPlaying.classList.remove("hidden");
+                battle(0, chosenSign,aiChoice, yourScore);
                 winner();
+                
             }else if(chosenSign === "scissors1" && aiChoice === "rock1"){
-                aiSigns[1].classList.add("chosen");
-                console.log("You win AI rock");
-                aiScore.innerHTML =parseInt(aiScore.innerHTML)+1;
-                keepPlaying.classList.remove("hidden");
+                battle(1, chosenSign,aiChoice, aiScore);
                 winner();
+                
             }else {
                 console.log("we'see");
                 console.log(chosenSign);
             }
             },3000);
 
-            
-    
         }else{
             console.log("button already selected");
-        
         }
-       
     })
-    chosenButton =0;
-    
+    chosenButton =0;  
 }
 
 
@@ -162,31 +136,7 @@ if(yourScore.innerHTML ==="3"){
 }
 
 //allows you to click to next game
-// youWin.addEventListener("click", function(){
-//     chosenButton =0;
-//     yourMove.classList.remove("invisible");
-//     aiMove.classList.add("invisible");
-//     youWin.classList.add("hidden");
-//     yourScore.innerHTML =0; 
-//     aiScore.innerHTML= 0; 
-//     for(let i=0; i<signs.length; i++){
-//         signs[i].classList.remove("chosen");
-//     }
-// })
 
-// //allows you to click to next game
-
-// youLose.addEventListener("click", function(){
-//     chosenButton =0;
-//     yourMove.classList.remove("invisible");
-//     aiMove.classList.add("invisible");
-//     youLose.classList.add("hidden");
-//     yourScore.innerHTML =0; 
-//     aiScore.innerHTML= 0; 
-//     for(let i=0; i<signs.length; i++){
-//         signs[i].classList.remove("chosen");
-//     }
-// })
 
 function ending(event){
     event.addEventListener("click", function(){
@@ -204,3 +154,15 @@ function ending(event){
 
 ending(youWin);
 ending(youLose);
+
+
+function battle(signNum, chosenSign,aiChoice,scorer){
+aiSigns[signNum].classList.add("chosen");
+keepPlaying.classList.remove("hidden");
+scorer.innerHTML =parseInt(scorer.innerHTML)+1;
+if (chosenSign === aiChoice){
+    console.log("we have a draw");
+} else{
+    console.log("You win AI: " + aiChoice);
+}
+}
