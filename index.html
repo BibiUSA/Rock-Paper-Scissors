@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="stylesheet" href="./style.css">
+  
+  <title>Rock, Paper, Scissors</title>
+
+ 
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    
+  </style>
+</head>
+<body>
+  <h1> ROCK PAPER SCISSORS</h1>
+  <p id="series">BEST OF 5 SERIES</p>
+
+  <section id="war-zone">
+  <section class="your-side sides">
+    <p class="move " id="your-move">YOUR MOVE</p>
+    <p class="score-label"> YOUR SCORE</p>
+    <div class="score-box">
+      <p class="score" id="your-score"></p>
+    </div>
+      
+    <div class="paper signs" id="paper1" >
+      <img src="./icon-paper.svg" alt="paper" class="icon">
+    </div>
+
+    <div class="rock-sci">
+
+    <div class="rock signs" id="rock1" >
+      <img src="./icon-rock.svg" alt="rock" class="icon">
+    </div>
+    <div class="scissors signs" id="scissors1" >
+      <img src="./icon-scissors.svg" alt="scissors"class="icon" >
+    </div>
+    </div>
+
+    <div id="keep-playing" class="announcement hidden">Keep Playing</div>
+    <div id="you-win" class="announcement hidden">You win, Champ!!!!!!!!!!!!</div>
+    <div id="you-lose" class="announcement hidden">You Lost. Come on! Let's play again!</div>
+
+  </section>
+
+
+  <section class="ai-side sides">
+
+    <p class="move invisible" id="ai-move">AI'S MOVE</p>
+    <p class="score-label"> AI SCORE</p>
+    <div class="score-box">
+      <p class="score" id ="ai-score"></p>
+    </div>
+      
+    <div class="paper signs"  id="paper2">
+      <img src="./icon-paper.svg" alt="paper" class="icon">
+    </div>
+
+    <div class="rock-sci">
+    <div class="rock signs" id="rock2">
+      <img src="./icon-rock.svg" alt="rock" class="icon">
+    </div>
+    <div class="scissors signs" id="scissors2">
+      <img src="./icon-scissors.svg" alt="scissors"class="icon" >
+    </div>
+    </div>
+
+    
+  </section>
+</section>
+<script src="./index.js"></script>
+</body>
+</html>
