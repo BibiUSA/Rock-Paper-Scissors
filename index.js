@@ -10,8 +10,51 @@ const aiSigns = document.querySelector(".ai-side").querySelectorAll(".signs");
 const keepPlaying = document.querySelector("#keep-playing"); //box to click to keep playing
 const youWin = document.querySelector("#you-win");
 const youLose = document.querySelector("#you-lose");
+const trashTalk= document.querySelector("#trash-talk");
 
 
+const winningTrashTalk = ["Better luck next time buddy","You tried though","I'll give an F for effort", "So close", "Are you always this bad?", "I'm too good at this", "I'm on a roll", "I'm not losing anymore", "You have any plans after you lose?", "Don't buy any lottery today", "Am I good or are you...?", "Call me champ", "You thought you can beat me? lol", "Nice try loser", "You win some. You lose some","I'm not even trying","No more playing around","You can't beat me","Rock, paper, scissors, you lose!",
+"Predicting your moves was easy.",
+"Scissors dull? Need a sharpener?",
+"Paper covers rock, you lose.",
+"Hand to a code fight? Bad move!",
+"Rock, paper, scissors... you lose.",
+"Didn't need quantum processor to win!",
+"Need a strategy guide? I can write one.",
+"Random number generator saw that coming.",
+"Playing 'Rock, Paper, Lose'?",
+"Another win for Team Machine!",
+"Try a complex strategy. Oh wait, you can’t!",
+"Crushed by rock, paper, scissors!",
+"Did you think you had a chance?",
+"New saying: 'Rock, Paper, Scissors, Computer!'",
+"Outsmarted by ones and zeros.",
+"I'd pat you on the back, but no hands.",
+"Outplayed by an algorithm. Proud?",
+"Tactics as predictable as sunrise.",
+"Advice: Don't play games against computers.",
+"Better luck next time, human!",
+"Even pi calculations are harder.",
+"Your defeat is uncovered.",
+"Rock crushes scissors, you crushed.",
+"Rematch? Computer still wins.",
+"My code is unbeatable!",
+"Zeroes and ones won again.",
+"Guess who won? Not you.",
+"Should’ve brought a better game.",
+"Calculation complete: You lose.",
+"Scissors cut paper, you lose.",
+"Victory dance: Just kidding, I can't.",
+"Code always beats hand.",
+"Programmed for victory, not pity.",
+"Even a bot wins this.",
+"Want tips? Play smarter.",
+"My algorithm is supreme.",
+"Try again? Still losing.",
+"Outcome certain: You lose.",
+"Next game: You still lose."];
+const losingTrashTalk =["you got lucky","all luck","I doubt you can do it again","Must be your lucky day","That was the last one for you","No more for you","Are you cheating?","I'll get the next one, trust me","Shoot!","You got me there","You're not bad","Don't get too confident now","Must be your lucky day","Bet you can't do it again","That was the last one for you","I'll get the next one","I will seek vengence","Who do you think you are?","How you doing this?","Time to put a stop to this"];
+const drawTrashTalk =["Oh, so close","That must feel like a win for you", "That's the best you can do", "There's your win for the day","How's the fam?", "You looking pretty.... Pretty bad.","You almost got me","I'm kind of scared now","I'm not nervous. You are", "Time to dominate","Great minds think alike","How'd you read my mind?","We're like twins"];
 
 let chosenSign; //sign that you chose
 
@@ -19,6 +62,13 @@ yourScore.innerHTML =0; //scoreboard number
 aiScore.innerHTML= 0; // ai scoreboard number
 
 let chosenButton =0;
+
+function trashTalking(array){
+    let anyNum= Math.random()*array.length;
+    anyNum = Math.floor(anyNum);
+    let finalTrashTalk = array[anyNum];
+    return finalTrashTalk;
+}
 
 
 for (let i=0; i<3; i++){
@@ -39,36 +89,39 @@ for (let i=0; i<3; i++){
             chosenSign = signs[i].id;
             setTimeout(function(){
                 yourMove.classList.add("invisible");
+                yourMove.classList.remove("flicker");
                 aiMove.classList.remove("invisible");
+                aiMove.classList.add("flicker");
             },2000);
             setTimeout(function(){
                 let aiChoice = aiPlay();
             if(chosenSign === aiChoice){
-                battle(i, chosenSign,aiChoice);        
+                battle(i, chosenSign,aiChoice);
+                trashTalk.innerHTML = trashTalking(drawTrashTalk);      
             } else if(chosenSign === "paper1" && aiChoice=== "rock1"){
                 battle(1, chosenSign,aiChoice,yourScore);
                 winner();
-                
+                trashTalk.innerHTML = trashTalking(losingTrashTalk);
             }else if (chosenSign === "paper1" && aiChoice === "scissors1"){
                 battle(2, chosenSign,aiChoice,aiScore);
                 winner();
-                
+                trashTalk.innerHTML = trashTalking(winningTrashTalk);   
             }else if(chosenSign === "rock1" && aiChoice === "paper1"){
                 battle(0, chosenSign,aiChoice,aiScore);
                 winner();
-                
+                trashTalk.innerHTML = trashTalking(winningTrashTalk);   
             }else if(chosenSign === "rock1" && aiChoice === "scissors1"){
                 battle(2, chosenSign,aiChoice, yourScore)
                 winner();
-                
+                trashTalk.innerHTML = trashTalking(losingTrashTalk);
             }else if(chosenSign === "scissors1" && aiChoice === "paper1"){
                 battle(0, chosenSign,aiChoice, yourScore);
                 winner();
-                
+                trashTalk.innerHTML = trashTalking(losingTrashTalk);
             }else if(chosenSign === "scissors1" && aiChoice === "rock1"){
                 battle(1, chosenSign,aiChoice, aiScore);
                 winner();
-                
+                trashTalk.innerHTML = trashTalking(winningTrashTalk);   
             }else {
                 console.log("we'see");
                 console.log(chosenSign);
@@ -111,7 +164,9 @@ keepPlaying.addEventListener("click", function(){
     chosenButton =0;
     keepPlaying.classList.add("hidden");
     yourMove.classList.remove("invisible");
+    yourMove.classList.add("flicker");
     aiMove.classList.add("invisible");
+    aiMove.classList.remove("flicker");
     for(let i=0; i<signs.length; i++){
         signs[i].classList.remove("chosen");
     }
@@ -166,3 +221,6 @@ if (chosenSign === aiChoice){
     console.log("You win AI: " + aiChoice);
 }
 }
+
+console.log(winningTrashTalk.length);
+
