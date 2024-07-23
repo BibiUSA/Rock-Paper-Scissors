@@ -132,7 +132,7 @@ body h1{
     width:32vw;
     height:18vh;
     border-radius: 5px;
-    background: linear-gradient(45deg, rgb(224, 238, 66), rgb(229, 237, 82));
+    background: linear-gradient(45deg, rgba(224, 238, 66, 0.371), rgba(229, 237, 82, 0.226));
     border: 3px solid rgb(110, 42, 220);
     box-shadow: 3px 3px 5px 6px rgb(41, 41, 41);
     position: absolute;
@@ -142,6 +142,7 @@ body h1{
     text-align: center;
     cursor: pointer;
     color: rgb(0, 0, 0);
+    border-radius: 20px;
 }
 #keep-playing button{
     padding: 3%;
@@ -160,15 +161,55 @@ body h1{
     background-color: rgba(240, 248, 255, 0);
 }
 
+#round-result{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: white;
+}
+
+
+#you-lose p, #you-win p{
+    font-size: 2rem;
+}
+
+
+#you-win button, #you-lose button{
+    padding: 3%;
+    background-color: blueviolet;
+    color: white;
+    font-weight: bolder;
+}
 
 
 
 
-
-
-
-
-
+@media screen and (max-width:500px ) {
+    .score-box{
+        width:20vw;
+        height:8vh;
+    }
+    .signs{
+        width:15vw;
+        height:10vw;
+    }
+    .rock-sci{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10vw;
+}
+    .scissors{
+        margin-top: 5vh;
+    }
+    body h1{
+        font-size: 1.5rem;
+    }
+    .move{
+        font-size: 2rem;;
+    }
+    .announcement{
+        height:45vh;
+    }
+}
 
 .hidden{
     display:none;
